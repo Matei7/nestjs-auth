@@ -2,7 +2,7 @@ import { registerAs } from '@nestjs/config';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { config as dotenvConfig } from 'dotenv';
 
-dotenvConfig({ path: __dirname + '/../../.env' });
+dotenvConfig({ path: __dirname + '/../../../.env' });
 
 const config = {
   type: process.env.DATABASE_DRIVER || 'mysql',
@@ -11,8 +11,8 @@ const config = {
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
+  entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
+  migrations: [__dirname + '/../../database/migrations/*{.ts,.js}'],
   autoLoadEntities: true,
 };
 

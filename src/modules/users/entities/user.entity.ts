@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { hash } from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
+import { UserRolesEnum } from '../../../config/constants/auth.constants';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {
@@ -21,6 +22,9 @@ export class UserEntity extends BaseEntity {
 
   @Column({ select: false })
   password: string;
+
+  @Column('simple-array')
+  roles: UserRolesEnum[] = [UserRolesEnum.CLIENT];
 
   @BeforeInsert()
   @BeforeUpdate()
