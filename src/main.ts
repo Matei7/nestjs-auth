@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { config as dotenvConfig } from 'dotenv';
-import process from 'process';
 import { ValidationPipe } from '@nestjs/common';
 import fs from 'fs';
 import { WinstonModule } from 'nest-winston';
@@ -52,7 +51,7 @@ async function bootstrap() {
    */
   const key = process.env.SSL_KEY || '';
   const cert = process.env.SSL_CERT || '';
-  if (key && cert) {
+  if (key && cert && fs.existsSync(key) && fs.existsSync(cert)) {
     options['httpsOptions'] = {
       key: fs.readFileSync(key),
       cert: fs.readFileSync(cert),
